@@ -75,14 +75,11 @@ func (s *Set[T]) IsSubset(other *Set[T]) bool {
 	return true
 }
 
-// Iterator returns a channel that can be used to iterate over the elements of the set.
-func (s *Set[T]) Iterator() <-chan T {
-	ch := make(chan T)
-	go func() {
-		defer close(ch)
-		for elem := range s.elements {
-			ch <- elem
-		}
-	}()
-	return ch
+// Array converts the set to a slice.
+func (s *Set[T]) Array() []T {
+	arr := make([]T, 0, len(s.elements))
+	for elem := range s.elements {
+		arr = append(arr, elem)
+	}
+	return arr
 }
