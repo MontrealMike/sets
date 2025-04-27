@@ -75,8 +75,8 @@ func (s *Set[T]) IsSubset(other *Set[T]) bool {
 	return true
 }
 
-// Array converts the set to a slice.
-func (s *Set[T]) Array() []T {
+// ToArray converts the set to a slice.
+func (s *Set[T]) ToArray() []T {
 	arr := make([]T, 0, len(s.elements))
 	for elem := range s.elements {
 		arr = append(arr, elem)
